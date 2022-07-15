@@ -23,13 +23,34 @@ Plugin 'tpope/vim-dispatch' "allows you to test in the window with vim-rspec
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tomasr/molokai'
 Plugin 'joshdick/onedark.vim'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'nikvdp/ejs-syntax'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'isRuslan/vim-es6'
 Plugin 'rking/ag.vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'vim-airline/vim-airline' "status/tabline
+
+" typscript
+Plugin 'pangloss/vim-javascript'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'maxmellon/vim-jsx-pretty'
+
+" peitalin might cause performance issues on large files see coc plugin instead
+" https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
+  " Plugin 'peitalin/vim-jsx-typescript'
+  " autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+Plugin 'neoclide/coc.nvim'
+let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+  \ ]
+Plugin 'neoclide/coc-tsserver'
+
+"fuzzy finder
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -47,30 +68,47 @@ set nobackup
 set clipboard=unnamed
 set incsearch
 set hlsearch
+
+" This setting makes search case-insensitive when all characters in the string
+" being searched are lowercase. However, the search becomes case-sensitive if
+" it contains any capital letters. This makes searching more convenient.
+" setTool tip documentation and diagnostics ignorecase
+" set smartcase
 set ignorecase
+
 set splitbelow
 set splitright
 set mousehide
 set backspace=indent,eol,start
 set guioptions-=R
 set guioptions-=L
+
+
+" Unbind some useless/annoying default key bindings.
+" 'Q' in normal mode enters Ex mode. You almost never want this.
+nmap Q <Nop> 
+
 "leader comands
 let mapleader = "\;"
+
+"remove relative number
+nmap <leader>nr :set number relativenumber!<cr>
+
 nmap <leader>vr :tabedit ~/.vimrc<cr>
- "save
 nmap <leader>vs :so %<cr>
 nmap <leader>s :w<cr>
 nmap <leader>h :noh<cr>
 nmap <leader>op :!open % -a Google\ Chrome<cr>
 nmap <leader>q :q<cr>
 nmap <leader>w :q<cr>
-" nmap <leader>nn :set nonu norelativenumber<cr>
-nmap <leader>yn :set number relativenumber!<cr>
+
+nmap <leader>rn :set number relativenumber<cr>
 nmap <leader>l <Insert>console.log(<esc>
+"save
 nmap <leader>so :source ~/.vimrc <cr>
 nmap <space> <Insert> <esc>l
 nmap <leader>b :Explore <cr>
-nmap <leader>sa :w !sudo tee %<cr>
+" nmap <leader>sa :w !sudo tee %<cr>
 nmap <leader>ci :set ignorecase<cr>
 nmap <leader>cc :set noignorecase<cr>
 "copy all lines in a file
@@ -81,11 +119,21 @@ nmap <leader>v :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 nmap <leader>vv :split <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 nmap <leader>t :tabe <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 "shortcuts to files
-nmap <leader>cs :tabedit /Users/julia/code/dotfiles/notes/ <cr> 
-nmap <leader>nnn :tabedit /Users/julia/code/dotfiles/notes/daily/daily.txt <cr>
-nmap <leader>nnc :tabedit /Users/julia/code/dotfiles/notes/daily/curric.txt <cr>
-nmap <leader>nnr :tabedit /Users/julia/code/dotfiles/notes/daily/r14_curric.txt <cr>
-nmap <leader>nne :tabedit /Users/julia/code/dotfiles/notes/daily/elevate.txt <cr>
+nmap <leader>nnn :tabedit /Users/natelipp/code/notes/daily/daily.txt <cr>
+nmap <leader>nnw :tabedit /Users/natelipp/code/notes/daily/west_monroe.txt <cr>
+nmap <leader>nna :tabedit /Users/natelipp/code/notes/ <cr>
+nmap <leader>nnq :tabedit /Users/natelipp/code/notes/daily/rithm/questions.txt <cr>
+nmap <leader>nnb :tabedit /Users/natelipp/code/notes/daily/bugs.txt <cr>
+nmap <leader>nns :tabedit /Users/natelipp/code/notes/daily/shopping.txt <cr>
+nmap <leader>nnf :tabedit /Users/natelipp/code/notes/daily/finance.txt <cr>
+nmap <leader>nne :tabedit /Users/natelipp/code/notes/daily/emails.txt <cr>
+nmap <leader>nnl :tabedit /Users/natelipp/code/notes/daily/rithm/lectures.txt <cr>
+
+nmap <leader>nnp :tabedit /Users/natelipp/code/notes/various/play.py <cr>
+nmap <leader>nnj :tabedit /Users/natelipp/code/notes/various/play.js <cr>
+nmap <leader>nnr :tabedit /Users/natelipp/code/notes/various/play.rb <cr>
+nmap <leader>nnh :tabedit /Users/natelipp/code/notes/various/play.html <cr>
+
 "can be used for testing 
 nmap <leader>T :w<cr>:call RunCurrentSpecFile()<cr>
 "indent all lines in the file
@@ -96,16 +144,29 @@ nmap <leader>tt :tabm -1<cr>
 "Move up and down by visible lines if current line is wrapped
 nmap j gj
 nmap k gk
+ 
 "Searching
+"
+"find
 " nmap <leader>f :vimgrep // **/*.js
 " :vimgrep -R --exclude-dir=node_modules /App/ .  
-" nmap <leader>ff :grep -R --exclude-dir=node_modules --exclude-dir=build --exclude=\yarn.lock --exclude=\package-lock.json* '' .<left><left><left>
-nmap <leader>ff :grep -R --exclude-dir=node_modules --exclude-dir=build --exclude=\yarn.lock --exclude=\package-lock.json* '' ../.<left><left><left><left><left><left>
+" nmap <leader>ff :grep -R --exclude-dir=node_modules --exclude-dir=build --exclude=\yarn.lock --exclude=\package-lock.json '' %<left><left><left>
+" nmap <leader>ff :grep -R --exclude-dir={node_modules,build,venv}
+" --exclude={\yarn.lock,\package-lock.json} '' %<left><left><left>
+"
+" Search with fzf fuzzyfinder
+"
+nmap <leader>ff :GFiles<cr>
+" open the result file using ctr-t (new tab)
+nmap <leader>fw :Rg<cr>
+" Recursively search through all files starting at the direcotry you are currently in (using %)
+"   To search starting from a different dirrectlry replace the '%' with the file path
 nmap <leader>oo :copen<cr> 
 "See a list of all files (after grep)"
 nmap <leader>n :cnext<cr>
 "Cycle through the next file file (after grep)"
 nmap <leader>p :cprevious<cr>
+
 "useful when a file automatically folds code"
 nmap <leader>nf :set nofoldenable<cr>
 "auto comands
