@@ -118,21 +118,22 @@ nmap <leader>ca :w !pbcopy<cr>
 nmap <leader>v :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 nmap <leader>vv :split <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 nmap <leader>t :tabe <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
-"shortcuts to files
-nmap <leader>nnn :tabedit /Users/natelipp/code/notes/daily/daily.txt <cr>
-nmap <leader>nnw :tabedit /Users/natelipp/code/notes/daily/west_monroe.txt <cr>
-nmap <leader>nna :tabedit /Users/natelipp/code/notes/ <cr>
-nmap <leader>nnq :tabedit /Users/natelipp/code/notes/daily/rithm/questions.txt <cr>
-nmap <leader>nnb :tabedit /Users/natelipp/code/notes/daily/bugs.txt <cr>
-nmap <leader>nns :tabedit /Users/natelipp/code/notes/daily/shopping.txt <cr>
-nmap <leader>nnf :tabedit /Users/natelipp/code/notes/daily/finance.txt <cr>
-nmap <leader>nne :tabedit /Users/natelipp/code/notes/daily/emails.txt <cr>
-nmap <leader>nnl :tabedit /Users/natelipp/code/notes/daily/rithm/lectures.txt <cr>
+"shortcuts to note files
+"daily-notes are not version controlled
+nmap <leader>nnn :tabedit /Users/natelipp/code/notes/daily-notes/daily.txt <cr>
+nmap <leader>nne :tabedit /Users/natelipp/code/notes/daily-notes/emails.txt <cr>
+nmap <leader>nnw :tabedit /Users/natelipp/code/notes/daily-notes/west_monroe.txt <cr>
+nmap <leader>nns :tabedit /Users/natelipp/code/notes/daily-notes/shopping.txt <cr>
+nmap <leader>nnf :tabedit /Users/natelipp/code/notes/daily-notes/finance.txt <cr>
+nmap <leader>nnp :tabedit /Users/natelipp/code/notes/daily-notes/scrap/scrap.py <cr>
+nmap <leader>nnj :tabedit /Users/natelipp/code/notes/daily-notes/scrap/scrap.js <cr>
+nmap <leader>nnr :tabedit /Users/natelipp/code/notes/daily-notes/scrap/scrap.rb <cr>
+nmap <leader>nnh :tabedit /Users/natelipp/code/notes/daily-notes/scrap/html <cr>
 
-nmap <leader>nnp :tabedit /Users/natelipp/code/notes/various/play.py <cr>
-nmap <leader>nnj :tabedit /Users/natelipp/code/notes/various/play.js <cr>
-nmap <leader>nnr :tabedit /Users/natelipp/code/notes/various/play.rb <cr>
-nmap <leader>nnh :tabedit /Users/natelipp/code/notes/various/play.html <cr>
+"perm-notes are version controlled for notes that may help you later
+nmap <leader>nna :tabedit /Users/natelipp/code/notes/perm-notes <cr>
+nmap <leader>nnb :tabedit /Users/natelipp/code/notes/perm-notes/bugs.txt <cr>
+
 
 "can be used for testing 
 nmap <leader>T :w<cr>:call RunCurrentSpecFile()<cr>
