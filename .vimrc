@@ -120,19 +120,19 @@ nmap <leader>vv :split <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 nmap <leader>t :tabe <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 "shortcuts to note files
 "daily-notes are not version controlled
-nmap <leader>nnn :tabedit /Users/natelipp/code/notes/daily-notes/daily.txt <cr>
-nmap <leader>nne :tabedit /Users/natelipp/code/notes/daily-notes/emails.txt <cr>
-nmap <leader>nnw :tabedit /Users/natelipp/code/notes/daily-notes/west_monroe.txt <cr>
-nmap <leader>nns :tabedit /Users/natelipp/code/notes/daily-notes/shopping.txt <cr>
-nmap <leader>nnf :tabedit /Users/natelipp/code/notes/daily-notes/finance.txt <cr>
-nmap <leader>nnp :tabedit /Users/natelipp/code/notes/daily-notes/scrap/scrap.py <cr>
-nmap <leader>nnj :tabedit /Users/natelipp/code/notes/daily-notes/scrap/scrap.js <cr>
-nmap <leader>nnr :tabedit /Users/natelipp/code/notes/daily-notes/scrap/scrap.rb <cr>
-nmap <leader>nnh :tabedit /Users/natelipp/code/notes/daily-notes/scrap/html <cr>
+nmap <leader>nnn :tabedit ~/code/notes/daily-notes/daily.txt <cr>
+nmap <leader>nne :tabedit ~/code/notes/daily-notes/emails.txt <cr>
+nmap <leader>nnw :tabedit ~/code/notes/daily-notes/west_monroe.txt <cr>
+nmap <leader>nns :tabedit ~/code/notes/daily-notes/shopping.txt <cr>
+nmap <leader>nnf :tabedit ~/code/notes/daily-notes/finance.txt <cr>
+nmap <leader>nnp :tabedit ~/code/notes/daily-notes/scrap/scrap.py <cr>
+nmap <leader>nnj :tabedit ~/code/notes/daily-notes/scrap/scrap.js <cr>
+nmap <leader>nnr :tabedit ~/code/notes/daily-notes/scrap/scrap.rb <cr>
+nmap <leader>nnh :tabedit ~/code/notes/daily-notes/scrap/html <cr>
 
 "perm-notes are version controlled for notes that may help you later
-nmap <leader>nna :tabedit /Users/natelipp/code/notes/perm-notes <cr>
-nmap <leader>nnb :tabedit /Users/natelipp/code/notes/perm-notes/bugs.txt <cr>
+nmap <leader>nna :tabedit ~/code/notes/perm-notes <cr>
+nmap <leader>nnb :tabedit ~/code/notes/perm-notes/bugs.txt <cr>
 
 
 "can be used for testing 
