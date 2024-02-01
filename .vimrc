@@ -118,13 +118,13 @@ nmap <leader>t :tabe <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 "daily-notes are not version controlled
 nmap <leader>nnn :tabedit ~/code/notes/daily-notes/daily.txt <cr>
 nmap <leader>nne :tabedit ~/code/notes/daily-notes/emails.txt <cr>
-nmap <leader>nnw :tabedit ~/code/notes/daily-notes/west-monroe <cr>
 nmap <leader>nns :tabedit ~/code/notes/daily-notes/shopping.txt <cr>
 nmap <leader>nnf :tabedit ~/code/notes/daily-notes/finance.txt <cr>
 nmap <leader>nnp :tabedit ~/code/notes/daily-notes/scrap/scrap.py <cr>
 nmap <leader>nnj :tabedit ~/code/notes/daily-notes/scrap/scrap.js <cr>
 nmap <leader>nnr :tabedit ~/code/notes/daily-notes/scrap/scrap.rb <cr>
 nmap <leader>nnh :tabedit ~/code/notes/daily-notes/scrap/html <cr>
+<<<<<<< HEAD
 nmap <leader>nnc :tabedit ~/code/notes/daily-notes/shortcuts.txt <cr>
 "yank the current path and filename of the current file
 nnoremap <leader>y :let @+=expand("%")<CR>
